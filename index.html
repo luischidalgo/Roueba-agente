@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#12251f">
+  <meta name="description" content="Una pequeña app de prueba para experimentar desde tu teléfono.">
+  <title>Roue · App de prueba</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: #12251f;
+      color: #f5f2e9;
+      font-synthesis: none;
+      text-rendering: optimizeLegibility;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      min-height: 100svh;
+      margin: 0;
+      display: grid;
+      place-items: center;
+      padding: 24px;
+      background:
+        radial-gradient(ellipse at 18% 0%, #294b39 0, transparent 39%),
+        radial-gradient(ellipse at 100% 100%, #293a31 0, transparent 36%),
+        #12251f;
+    }
+
+    main { width: min(100%, 440px); }
+
+    .card {
+      overflow: hidden;
+      border: 1px solid #ffffff1a;
+      border-radius: 30px;
+      padding: 30px;
+      background: #192e26eF;
+      box-shadow: 0 28px 90px #07110dcc;
+    }
+
+    .topline {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      color: #b6c3b9;
+      font-size: .76rem;
+      font-weight: 650;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+
+    .status { display: flex; align-items: center; gap: 8px; letter-spacing: .04em; }
+    .dot { width: 8px; height: 8px; border-radius: 50%; background: #a7e7a5; box-shadow: 0 0 14px #a7e7a599; }
+
+    h1 { margin: 38px 0 10px; font-size: clamp(2.8rem, 14vw, 4.3rem); line-height: .96; letter-spacing: -.075em; }
+    .subtitle { margin: 0; color: #c0cbc2; font-size: 1rem; line-height: 1.65; }
+
+    .counter {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin: 30px 0 18px;
+      padding: 16px 18px;
+      border: 1px solid #ffffff14;
+      border-radius: 18px;
+      background: #ffffff08;
+    }
+
+    .counter-label { color: #c0cbc2; font-size: .9rem; }
+    #count { font-size: 1.5rem; font-weight: 750; font-variant-numeric: tabular-nums; }
+
+    button {
+      width: 100%;
+      min-height: 58px;
+      border: 0;
+      border-radius: 17px;
+      padding: 15px 20px;
+      background: #c9efb2;
+      color: #17251b;
+      font: inherit;
+      font-size: 1rem;
+      font-weight: 750;
+      cursor: pointer;
+      transition: transform .16s ease, background .16s ease;
+      touch-action: manipulation;
+    }
+
+    button:hover { background: #d7f5c5; }
+    button:active { transform: scale(.98); }
+    button:focus-visible { outline: 3px solid #f5f2e9; outline-offset: 4px; }
+
+    .hint { margin: 17px 0 0; color: #91a096; text-align: center; font-size: .8rem; }
+
+    @media (max-width: 380px) {
+      body { padding: 16px; }
+      .card { padding: 24px; border-radius: 25px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <section class="card" aria-labelledby="title">
+      <div class="topline">
+        <span>Roue</span>
+        <span class="status"><span class="dot" aria-hidden="true"></span>En línea</span>
+      </div>
+      <h1 id="title">Hola,<br>mundo.</h1>
+      <p class="subtitle">Esta es tu app de prueba. Toca el botón y comprueba que todo funciona desde tu teléfono.</p>
+      <div class="counter" aria-live="polite">
+        <span class="counter-label">Toques de prueba</span>
+        <span id="count">0</span>
+      </div>
+      <button id="test-button" type="button">Probar la app <span aria-hidden="true">→</span></button>
+      <p class="hint">Diseñada para verse bien en cualquier pantalla.</p>
+    </section>
+  </main>
+  <script>
+    const count = document.querySelector("#count");
+    const button = document.querySelector("#test-button");
+    let taps = 0;
+
+    button.addEventListener("click", () => {
+      taps += 1;
+      count.textContent = String(taps);
+      button.innerHTML = '¡Funciona! <span aria-hidden="true">✓</span>';
+    });
+  </script>
+</body>
+</html>
